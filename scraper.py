@@ -13,8 +13,13 @@ def spider(year):
         page_number = soup.find('div',class_ = 'desc')
         page_number_text = page_number.text
         max_pages = int(page_number_text[page_number_text.index("of ")+3:page_number_text.index("titles")].replace(",",""))
-        print(temp)
-        # movie = soup.find_all('div', class_ = 'lister-item mode-advanced')
+        movies = soup.find_all('div', class_ = 'lister-item mode-advanced')
+        for movie in movies:
+            name = movie.h3.a.text
+            descrption = movie.find_all('p',class_ = 'text-muted')[1].text
+            print(name)
+            print(descrption)
+            print("--------------------")
 
 
 
