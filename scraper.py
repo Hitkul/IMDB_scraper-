@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-
 def spider(year):
     id = 0
     movie_details = {}
