@@ -2,14 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-id = 0
+
 def spider(year):
-    global id
+    id = 0
     movie_details = {}
     page = 1
-    max_pages = 2
+    max_pages = 200
     while page <= max_pages:
-        print(page)
+        print((page,year))
         url = 'http://www.imdb.com/search/title?release_date='+str(year)+'&page='+str(page)+'&ref_=adv_nxt'
         source_code = requests.get(url, allow_redirects=False)
         soup = BeautifulSoup(source_code.text,'html.parser')
@@ -23,4 +23,5 @@ def spider(year):
     with open('json/'+str(year)+'.json','w') as fp:
         json.dump(movie_details,fp,indent=4)
 
-spider(2017)
+for year in range(1915,2018):
+    spider(year)
