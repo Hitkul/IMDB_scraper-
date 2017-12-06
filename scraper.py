@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 id = 0
 def spider(year):
@@ -19,8 +20,7 @@ def spider(year):
             movie_details[id]= {'name':name,'year':year,'plot':descrption}
             id+=1
         page+=1
-    print(movie_details)
-
-
+    with open('json/'+str(year)+'.json','w') as fp:
+        json.dump(movie_details,fp,indent=4)
 
 spider(2017)
